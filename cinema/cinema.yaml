@@ -1,0 +1,154 @@
+swagger: "2.0"
+
+info:
+  description: "This a API for cinema service"
+  title: "A2 - Cinema Service"
+  version: "1.0.0"
+
+basePath: "/v2"
+
+paths:
+  /cinema:
+    get:
+      tags:
+      - "Cinema Information"
+      operationId: "get_cinema"
+      summary: "Get the info of all available cinemas"
+
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Cinema"
+  
+  /cinema/search:
+    get:
+      tags:
+      - "Cinema Information"
+      operationId: "get_cinemaBymovie"
+      summary: "Find all available cinemas based on movie"
+      parameters:
+      - name: "movie name"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "description"
+        in: "query"
+        type: "string"
+      
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Cinema"
+  
+  /cinema/offer:
+    get:
+      tags:
+      - "Cinema Information"
+      operationId: "get_offer"
+      summary: "Find all available snack offers based on cinema"
+      parameters:
+      - name: "cinema name"
+        in: "query"
+        required: true
+        type: "string"
+      
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Cinema"
+  
+  /movie:
+    get:
+      tags:
+      - "Movie Information"
+      operationId: "get_movie"
+      summary: "get the information of movies"
+      parameters:
+      - name: "movie name"
+        in: "query"
+        description: "Please enter your movie name..."
+        required: true
+        type: "string"
+      - name: "cinema name"
+        in: "query"
+        description: "Please enter your cinema name..."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK!"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Movie"
+        400:
+          description: "Invalid movieNmae/cinemaName entered"
+      
+
+definitions:
+  Cinema:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "Event Cinemas Macquarie Centre"
+      address:
+        type: "string"
+        example: "Macquarie Shopping Centre Cnr Herring &, Waterloo Rd, North Ryde NSW"
+      phone:
+        type: "string"
+        example: "(02) 8879 3500"
+      movies:
+        type: "array"
+        items:
+          $ref: "#/definitions/Movie"
+      offers:
+        type: "string"
+        example: "popcorn+softdrink : 20 dollars" 
+        
+  
+  Movie:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "No time to Die"
+      cinema:
+        type: "string"
+        example: "Event Cinemas Macquarie Centre"
+      description:
+        type: "string"
+        example: "Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help."
+      cast:
+        type: "string"
+        example: "Billy Magnussen, Ralph Fiennes, Daniel Craig"
+      status:
+        type: "string"
+        example: "now showing"
+      timeslots:
+        type: "array"
+        items:
+          $ref: "#/definitions/Timeslot"
+          
+  Timeslot:       
+    type: "object"
+    properties:
+      time:
+        type: "string"
+        example: "1:00 PM"
+      seats:
+        type: "string"
+        example: "5 seats available"
+      class:
+        type: "string"
+        example: "saver"
+  

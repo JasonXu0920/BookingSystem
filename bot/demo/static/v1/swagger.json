@@ -1,0 +1,36 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This a API for movie chat bot",
+    "title": "A2 - Chat Bot",
+    "version": "1.0.0"
+  },
+  "basePath": "/v1",
+  "paths": {
+    "/ask": {
+      "get": {
+        "tags": [
+          "Movie chat bot"
+        ],
+        "summary": "input the message",
+        "operationId": "input_message",
+        "parameters": [
+          {
+            "name": "message",
+            "in": "query",
+            "description": "Please enter your message...",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Got it!"
+          },
+          "400": {
+            "description": "Invalid!"
+          }
+        }
+      }
+    }
+  }
+}

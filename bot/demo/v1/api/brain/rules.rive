@@ -1,0 +1,23 @@
+! version = 2.0
+
+// Substitutions
+! sub I'm = i am
+! sub i'm = i am
+
++ hi bot
+- hello!
+- G'day
+
++ how are you
+- I am good, how are you?
+- great, how about you?
+
++ i am *
+- hi <star>
+
++ my name is *
+- hi <star>
+
++ my email is *
+- email:<star>
+

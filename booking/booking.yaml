@@ -1,0 +1,107 @@
+swagger: "2.0"
+
+info:
+  description: "This a API for booking service"
+  title: "A2 - Booking Service"
+  version: "1.0.0"
+
+basePath: "/v3"
+
+paths:
+  /booking/book:
+    post:
+      tags:
+      - "Booking"
+      operationId: "book_ticket"
+      summary: "book a ticket for a user"
+      parameters:
+        - name: "cinema"
+          in : "query"
+          type: "string"
+          required: true
+        - name: "username"
+          in : "query"
+          type: "string"
+          required: true
+        - name : "movie name"
+          in : "query"
+          type: "string"
+          required: true
+        - name : "time slot"
+          in : "query"
+          type: "string"
+          required: true
+        - name : "number of tickets"
+          in : "query"
+          type: "integer"
+          required: true
+          
+      responses:
+        201:
+          description: "request sent!"
+          schema:
+            $ref: "#/definitions/Booking"
+        400:
+          description: "Invalid movie name/timeslot entered"
+  
+  /booking/cancel:   
+    delete:
+      tags:
+      - "Cancel"
+      summary: "Cancel a booking"
+      operationId: "cancel_booking"
+      parameters:
+        - name: "cinema"
+          in : "query"
+          type: "string"
+          required: true
+        - name: "username"
+          in : "query"
+          type: "string"
+          required: true
+        - name : "movie name"
+          in : "query"
+          type: "string"
+          required: true
+        - name : "time slot"
+          in : "query"
+          type: "string"
+          required: true
+      responses:
+        200:
+          description: "the ticket is cancelled!"
+        400:
+          description: "Invalid username/email entered!"
+      
+  
+definitions:
+  
+  Booking:
+    type: "object"
+    properties:
+      cinema:
+        type: "string"
+        example: "Event Cinema"
+      username:
+        type: "string"
+        example: "xx yy"
+      moviename:
+        type: "string"
+        example: "No time to Die"
+      timeslot:
+        type: "string"
+        example: "11:00 PM"
+      date:
+        type: "string"
+        example: "15 Nov 2021"
+      numOfticket:
+        type: "integer"
+        example: "2"
+          
+          
+          
+          
+          
+          
+        
+  
